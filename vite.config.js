@@ -1,18 +1,22 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const isDev = mode !== "production";
+  const isDev = mode !== 'production';
 
+  const basePath = isDev ? '/' : '/todos/';
 
   return {
+    base: basePath,
+    cssCodeSplit: true,
     plugins: [
       react({
         babel: {
-          plugins: isDev ? ["check-prop-types"] : [],
+          plugins: isDev ? ['check-prop-types'] : [],
         },
       }),
     ],
   };
 });
+
+
